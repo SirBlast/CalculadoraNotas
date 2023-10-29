@@ -40,12 +40,19 @@ class _MyHomePageState extends State<MyHomePage> {
   final _nota3 = TextEditingController();
   final _nota4 = TextEditingController();
   double _total = 0;
+  String _premio = "";
 
   void _calcularpromedio() {
     setState(() {
 
       _total = (double.parse(_nota1.text) + double.parse(_nota2.text) + double.parse(_nota3.text) + double.parse(_nota4.text))/4;
       _total.round();
+      if (_total < 3){
+        _premio="No aprobaste, lo siento";
+      }
+      else{
+        _premio = "Felicidades, aprobó";
+      }
     });
   }
 
@@ -111,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               const SizedBox(height: 60),
               Text(
-                'El promedio es: $_total',
+                'El promedio es: $_total. $_premio',
                 style: const TextStyle(
                     fontSize: 20,
                     fontStyle: FontStyle.italic
